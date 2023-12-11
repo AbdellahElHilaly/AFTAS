@@ -11,9 +11,9 @@ import java.sql.Date;
 import java.util.UUID;
 
 @Component
-public class DummyMember {
-    private final Faker faker = new Faker();
+public class DummyMember extends BaseFaker<Member>{
 
+    @Override
     public Member  generate() {
         return Member.builder()
                 .id(UUID.randomUUID())

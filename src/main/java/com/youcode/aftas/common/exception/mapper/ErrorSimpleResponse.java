@@ -14,5 +14,4 @@ public class ErrorSimpleResponse {
     private List<String> details;
     private String path;
 
-
 }

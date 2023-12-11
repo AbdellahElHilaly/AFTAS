@@ -3,9 +3,7 @@ package com.youcode.aftas.core.dao.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.youcode.aftas.core.utils.pipe.Real;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Time;
@@ -21,6 +19,7 @@ import java.util.UUID;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Competition {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     private String Code;

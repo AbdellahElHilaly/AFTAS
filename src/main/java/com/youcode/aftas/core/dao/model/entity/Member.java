@@ -1,15 +1,9 @@
 package com.youcode.aftas.core.dao.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.youcode.aftas.shared.Enum.IdentityDocumentTypeEnum;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.sql.Date;
 import java.util.List;
@@ -20,9 +14,12 @@ import java.util.UUID;
 @Builder
 @Entity
 @ToString
+@Getter
+@Setter
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Member {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     private Integer number;
