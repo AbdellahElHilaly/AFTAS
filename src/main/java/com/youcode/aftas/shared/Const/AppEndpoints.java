@@ -18,4 +18,5 @@ public class AppEndpoints {
     public static final String FISH = VERSION + "/fish";
     public static final String HUNTING = VERSION + "/hunting";
     public static final String LEVEL = VERSION + "/levels";
+    public static final String RANKING = VERSION + "/rankings";
 }

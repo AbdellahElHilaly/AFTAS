@@ -42,7 +42,4 @@ public class CompetitionDto implements Serializable {
     @NotNull(message = "Amount is required")
     @Positive(message = "Amount should be positive")
     Double amount;
-
-
-
 }

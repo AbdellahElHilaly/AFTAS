@@ -36,10 +36,4 @@ public class Competition  {
     @OneToMany
     @ToString.Exclude
     private List<Hunting> huntingList;
-
-    @OneToMany(mappedBy = "competition")
-    @ToString.Exclude
-    private List<Ranking> rankingList;
-
-
 }

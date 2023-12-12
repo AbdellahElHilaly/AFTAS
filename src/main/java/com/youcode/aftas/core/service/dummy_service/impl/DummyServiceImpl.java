@@ -1,6 +1,7 @@
 package com.youcode.aftas.core.service.dummy_service.impl;
 
 import com.youcode.aftas.core.dao.model.entity.Hunting;
+import com.youcode.aftas.core.dao.model.entity.Ranking;
 import com.youcode.aftas.core.dao.model.fake.*;
 import com.youcode.aftas.core.dao.repository.*;
 import com.youcode.aftas.core.service.dummy_service.DummyService;
@@ -17,6 +18,7 @@ public class DummyServiceImpl implements DummyService {
     private final FishRepository fishRepository;
     private final HuntingRepository huntingRepository;
     private final LevelRepository levelRepository;
+    private final RankingRepository rankingRepository;
 
 
     private final DummyCompetition dummyCompetition;
@@ -24,6 +26,7 @@ public class DummyServiceImpl implements DummyService {
     private final DummyFish dummyFish;
     private final DummyHunting dummyHunting;
     private final DummyLevel dummyLevel;
+    private final DummyRanking dummyRanking;
 
     @Override
     public void save() {
@@ -32,6 +35,7 @@ public class DummyServiceImpl implements DummyService {
         fishRepository.save(dummyFish.generate());
         huntingRepository.save(dummyHunting.generate());
         levelRepository.save(dummyLevel.generate());
+        rankingRepository.save(dummyRanking.generate());
     }
 
     @Override
@@ -42,6 +46,7 @@ public class DummyServiceImpl implements DummyService {
         competitionRepository.saveAll(dummyCompetition.generateCollection(size));
         huntingRepository.saveAll(dummyHunting.generateCollection(size));
         levelRepository.saveAll(dummyLevel.generateCollection(size));
+        rankingRepository.saveAll(dummyRanking.generateCollection(size));
     }
 
     @Override
@@ -51,6 +56,7 @@ public class DummyServiceImpl implements DummyService {
         fishRepository.deleteAll();
         huntingRepository.deleteAll();
         levelRepository.deleteAll();
+        rankingRepository.deleteAll();
     }
 
 

@@ -30,8 +30,4 @@ public class Member {
     private IdentityDocumentTypeEnum identityDocumentType;
     private String identityDocumentNumber;
 
-    @OneToMany(mappedBy = "member")
-    @ToString.Exclude
-    private List<Ranking> rankingList;
-
 }
