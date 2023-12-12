@@ -4,6 +4,7 @@ import com.youcode.aftas.common.exception.mapper.ErrorResponse;
 import com.youcode.aftas.common.exception.mapper.ErrorSimpleResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
+@Slf4j
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class GlobalExceptionHandler {
 
@@ -48,6 +50,8 @@ public class GlobalExceptionHandler {
         errorResponse.setDetails(errorDetails);
         errorResponse.setPath(request.getRequestURI());
 
+        logger.error("Validation Failed", exception);
+
         return ResponseEntity.badRequest().body(errorResponse);
     }
 
@@ -60,6 +64,8 @@ public class GlobalExceptionHandler {
         errorSimpleResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorSimpleResponse.setPath(request.getRequestURI());
 
+        logger.warn("Resource Not Found", exception);
+
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorSimpleResponse);
     }
 
@@ -71,6 +77,9 @@ public class GlobalExceptionHandler {
         errorSimpleResponse.setMessage("Data Integrity Violation");
         errorSimpleResponse.setDetails(Arrays.asList(exception.getMessage().split(";")));
         errorSimpleResponse.setPath(request.getRequestURI());
+
+        logger.error("Data Integrity Violation", exception);
+
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorSimpleResponse);
     }
 
@@ -86,6 +95,7 @@ public class GlobalExceptionHandler {
         errorSimpleResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorSimpleResponse.setPath(request.getRequestURI());
 
+        logger.error("Internal Server Error", exception);
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorSimpleResponse);
     }
