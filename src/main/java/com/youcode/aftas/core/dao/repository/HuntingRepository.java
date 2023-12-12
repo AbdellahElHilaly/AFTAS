@@ -9,4 +9,11 @@ import java.util.UUID;
 @Repository
 
 public interface HuntingRepository extends JpaRepository<Hunting, UUID>, JpaSpecificationExecutor<Hunting> {
+    /*
+    example of us of JpaSpecificationExecutor
+
+    @Query("SELECT p FROM Person p WHERE LOWER(p.lastName) = LOWER(:lastName)")
+    List<Person> find(@Param("lastName") String lastName);
+
+     */
 }

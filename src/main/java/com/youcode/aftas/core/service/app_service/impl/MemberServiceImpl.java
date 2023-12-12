@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Service
@@ -29,7 +30,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Member getById(UUID id) {
         return memberRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Member not found with id: " + id)
+                () -> new NoSuchElementException("Member not found with id: " + id)
         );
     }
 

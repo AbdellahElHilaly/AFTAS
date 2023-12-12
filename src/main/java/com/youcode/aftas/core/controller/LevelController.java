@@ -1,8 +1,8 @@
 package com.youcode.aftas.core.controller;
 
-import com.youcode.aftas.core.dao.model.dto.MemberDto;
-import com.youcode.aftas.core.dao.model.entity.Member;
-import com.youcode.aftas.core.service.app_service.MemberService;
+import com.youcode.aftas.core.dao.model.dto.LevelDto;
+import com.youcode.aftas.core.dao.model.entity.Level;
+import com.youcode.aftas.core.service.app_service.LevelService;
 import com.youcode.aftas.core.utils.pipe.ResponseFormat;
 import com.youcode.aftas.shared.Const.AppEndpoints;
 import jakarta.validation.Valid;
@@ -16,64 +16,65 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(AppEndpoints.MEMBER)
+@RequestMapping(AppEndpoints.LEVEL)
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class MemberController {
+public class LevelController {
 
-    private final MemberService memberService;
+    private final LevelService LevelService;
     private final ModelMapper modelMapper;
-    private final ResponseFormat<List<Member>> responseFormatList;
-    private final ResponseFormat<Member> responseFormat;
+    private final ResponseFormat<List<Level>> responseFormatList;
+    private final ResponseFormat<Level> responseFormat;
     private final ResponseFormat<Void> responseFormatVoid;
 
+
     @GetMapping
-    public ResponseEntity<ResponseFormat<List<Member>>> getAll() {
+    public ResponseEntity<ResponseFormat<List<Level>>> getAll() {
         return ResponseEntity.ok(
                 responseFormatList.format(
-                        memberService.getAll(),
-                        "Members retrieved successfully"
+                        LevelService.getAll(),
+                        "Level list retrieved successfully"
                 ));
     }
 
     @PostMapping
-    public ResponseEntity<ResponseFormat<Member>> save(@Valid  @RequestBody MemberDto memberDto) {
+    public ResponseEntity<ResponseFormat<Level>> save(@Valid @RequestBody LevelDto LevelDto) {
         return ResponseEntity.ok(responseFormat.format(
-                memberService.save(modelMapper.map(memberDto, Member.class)),
-                "Member saved successfully"
+                LevelService.save(modelMapper.map(LevelDto, Level.class)),
+                "Level saved successfully"
         ));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseFormat<Member>> getById(@PathVariable UUID id) {
+    public ResponseEntity<ResponseFormat<Level>> getById(@PathVariable UUID id) {
         return ResponseEntity.ok(responseFormat.format(
-                memberService.getById(id),
-                "Member retrieved successfully"
+                LevelService.getById(id),
+                "Level retrieved successfully"
         ));
     }
 
+
     @PutMapping("/{id}")
-    public ResponseEntity<ResponseFormat<Member>> update(@Valid  @RequestBody MemberDto memberDto, @PathVariable UUID id) {
+    public ResponseEntity<ResponseFormat<Level>> update(@Valid @RequestBody LevelDto LevelDto, @PathVariable UUID id) {
         return ResponseEntity.ok(responseFormat.format(
-                memberService.update(modelMapper.map(memberDto, Member.class), id),
-                "Member updated successfully"
+                LevelService.update(modelMapper.map(LevelDto, Level.class), id),
+                "Level updated successfully"
         ));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ResponseFormat<Void>> deleteById(@PathVariable UUID id) {
-        memberService.deleteById(id);
+        LevelService.deleteById(id);
         return ResponseEntity.ok(responseFormatVoid.format(
-                "Member deleted successfully"
+                "Level deleted successfully"
         ));
     }
 
     @DeleteMapping
     public ResponseEntity<ResponseFormat<Void>> deleteAll() {
-        memberService.deleteAll();
+        LevelService.deleteAll();
         return ResponseEntity.ok(responseFormatVoid.format(
-                "Members deleted successfully"
+                "Level deleted successfully"
         ));
     }
 
 }
-

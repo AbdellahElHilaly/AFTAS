@@ -13,11 +13,11 @@ public class Real{
     }
 
     private Double toDirham(Double value) {
-        return value * 20;
+        return value / 20;
     }
 
     public Double toReal(Double value) {
-        return value / 20;
+        return value * 20;
     }
 
 }

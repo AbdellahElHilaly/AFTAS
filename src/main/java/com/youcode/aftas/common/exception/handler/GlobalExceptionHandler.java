@@ -23,7 +23,7 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class GlobalExceptionHandler {
 
     private final ErrorResponse errorResponse;

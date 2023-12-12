@@ -5,6 +5,7 @@ import com.youcode.aftas.shared.Enum.IdentityDocumentTypeEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 import java.util.UUID;

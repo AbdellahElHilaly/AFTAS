@@ -1,7 +1,6 @@
 package com.youcode.aftas.core.dao.model.fake;
 
 import com.github.javafaker.Faker;
-import com.youcode.aftas.core.dao.model.entity.Member;
 
 import java.util.ArrayList;
 import java.util.List;

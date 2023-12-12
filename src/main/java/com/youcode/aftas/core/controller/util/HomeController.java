@@ -1,4 +1,4 @@
-package com.youcode.aftas.core.controller;
+package com.youcode.aftas.core.controller.util;
 
 import com.youcode.aftas.core.utils.pipe.ResponseFormat;
 import lombok.AllArgsConstructor;

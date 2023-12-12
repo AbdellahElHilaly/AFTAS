@@ -1,8 +1,8 @@
 package com.youcode.aftas.core.controller;
 
-import com.youcode.aftas.core.dao.model.dto.MemberDto;
-import com.youcode.aftas.core.dao.model.entity.Member;
-import com.youcode.aftas.core.service.app_service.MemberService;
+import com.youcode.aftas.core.dao.model.dto.FishDto;
+import com.youcode.aftas.core.dao.model.entity.Fish;
+import com.youcode.aftas.core.service.app_service.FishService;
 import com.youcode.aftas.core.utils.pipe.ResponseFormat;
 import com.youcode.aftas.shared.Const.AppEndpoints;
 import jakarta.validation.Valid;
@@ -16,64 +16,65 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(AppEndpoints.MEMBER)
+@RequestMapping(AppEndpoints.FISH)
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class MemberController {
+public class FishController {
 
-    private final MemberService memberService;
+    private final FishService FishService;
     private final ModelMapper modelMapper;
-    private final ResponseFormat<List<Member>> responseFormatList;
-    private final ResponseFormat<Member> responseFormat;
+    private final ResponseFormat<List<Fish>> responseFormatList;
+    private final ResponseFormat<Fish> responseFormat;
     private final ResponseFormat<Void> responseFormatVoid;
 
+
     @GetMapping
-    public ResponseEntity<ResponseFormat<List<Member>>> getAll() {
+    public ResponseEntity<ResponseFormat<List<Fish>>> getAll() {
         return ResponseEntity.ok(
                 responseFormatList.format(
-                        memberService.getAll(),
-                        "Members retrieved successfully"
+                        FishService.getAll(),
+                        "Fish list retrieved successfully"
                 ));
     }
 
     @PostMapping
-    public ResponseEntity<ResponseFormat<Member>> save(@Valid  @RequestBody MemberDto memberDto) {
+    public ResponseEntity<ResponseFormat<Fish>> save(@Valid @RequestBody FishDto FishDto) {
         return ResponseEntity.ok(responseFormat.format(
-                memberService.save(modelMapper.map(memberDto, Member.class)),
-                "Member saved successfully"
+                FishService.save(modelMapper.map(FishDto, Fish.class)),
+                "Fish saved successfully"
         ));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseFormat<Member>> getById(@PathVariable UUID id) {
+    public ResponseEntity<ResponseFormat<Fish>> getById(@PathVariable UUID id) {
         return ResponseEntity.ok(responseFormat.format(
-                memberService.getById(id),
-                "Member retrieved successfully"
+                FishService.getById(id),
+                "Fish retrieved successfully"
         ));
     }
 
+
     @PutMapping("/{id}")
-    public ResponseEntity<ResponseFormat<Member>> update(@Valid  @RequestBody MemberDto memberDto, @PathVariable UUID id) {
+    public ResponseEntity<ResponseFormat<Fish>> update(@Valid @RequestBody FishDto FishDto, @PathVariable UUID id) {
         return ResponseEntity.ok(responseFormat.format(
-                memberService.update(modelMapper.map(memberDto, Member.class), id),
-                "Member updated successfully"
+                FishService.update(modelMapper.map(FishDto, Fish.class), id),
+                "Fish updated successfully"
         ));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ResponseFormat<Void>> deleteById(@PathVariable UUID id) {
-        memberService.deleteById(id);
+        FishService.deleteById(id);
         return ResponseEntity.ok(responseFormatVoid.format(
-                "Member deleted successfully"
+                "Fish deleted successfully"
         ));
     }
 
     @DeleteMapping
     public ResponseEntity<ResponseFormat<Void>> deleteAll() {
-        memberService.deleteAll();
+        FishService.deleteAll();
         return ResponseEntity.ok(responseFormatVoid.format(
-                "Members deleted successfully"
+                "Fish deleted successfully"
         ));
     }
 
 }
-

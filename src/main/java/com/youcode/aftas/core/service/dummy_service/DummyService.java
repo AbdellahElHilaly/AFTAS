@@ -1,9 +1,9 @@
 package com.youcode.aftas.core.service.dummy_service;
 
-import java.util.List;
+public interface DummyService{
 
-public interface DummyService <T>{
+    public void save();
+    public void saveCollection(int size);
+    public void clear();
 
-    public T save();
-    public List<T> saveCollection(int size);
 }

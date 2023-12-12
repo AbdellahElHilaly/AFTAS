@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.youcode.aftas.core.utils.pipe.Real;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import java.sql.Time;
 import java.sql.Date;
@@ -16,13 +17,15 @@ import java.util.UUID;
 @Builder
 @Entity
 @ToString
+@Setter
+@Getter
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class Competition {
+public class Competition  {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private String Code;
+    private String code;
     private Date date;
     private Time startTime;
     private Time endTime;
@@ -37,5 +40,6 @@ public class Competition {
     @OneToMany(mappedBy = "competition")
     @ToString.Exclude
     private List<Ranking> rankingList;
+
 
 }
