@@ -8,8 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface CompetitionRepository extends JpaRepository<Competition, UUID>  {
+public interface CompetitionRepository extends JpaRepository<Competition, UUID>, JpaSpecificationExecutor<Competition> {
 
-//JpaSpecificationExecutor we use it to make a dynamic query with the help of Specification class
-//    like orderBy, where, groupBy, having, join, etc.
 }

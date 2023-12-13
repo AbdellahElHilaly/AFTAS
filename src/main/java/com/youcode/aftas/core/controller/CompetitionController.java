@@ -4,7 +4,8 @@ package com.youcode.aftas.core.controller;
 import com.youcode.aftas.core.dao.model.dto.CompetitionDto;
 import com.youcode.aftas.core.dao.model.entity.Competition;
 import com.youcode.aftas.core.service.app_service.CompetitionService;
-import com.youcode.aftas.core.utils.pipe.ResponseFormat;
+import com.youcode.aftas.core.utils.pipe.mapper.ResponseFormat;
+import com.youcode.aftas.core.utils.pipe.vm.CompetitionVm;
 import com.youcode.aftas.shared.Const.AppEndpoints;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -23,13 +24,13 @@ public class CompetitionController {
 
     private final CompetitionService competitionService;
     private final ModelMapper modelMapper;
-    private final ResponseFormat<List<Competition>> responseFormatList;
-    private final ResponseFormat<Competition> responseFormat;
+    private final ResponseFormat<List<CompetitionVm>> responseFormatList;
+    private final ResponseFormat<CompetitionVm> responseFormat;
     private final ResponseFormat<Void> responseFormatVoid;
 
 
     @GetMapping
-    public ResponseEntity<ResponseFormat<List<Competition>>> getAll() {
+    public ResponseEntity<ResponseFormat<List<CompetitionVm>>> getAll() {
         return ResponseEntity.ok(
                 responseFormatList.format(
                         competitionService.getAll(),
@@ -37,25 +38,29 @@ public class CompetitionController {
                 ));
     }
 
+
+
     @PostMapping
-    public ResponseEntity<ResponseFormat<Competition>> save(@Valid @RequestBody CompetitionDto competitionDto) {
+    public ResponseEntity<ResponseFormat<CompetitionVm>> save(@Valid @RequestBody CompetitionDto competitionDto) {
         return ResponseEntity.ok(responseFormat.format(
                 competitionService.save(modelMapper.map(competitionDto, Competition.class)),
                 "Competition saved successfully"
         ));
     }
 
+
+
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseFormat<Competition>> getById(@PathVariable UUID id) {
+    public ResponseEntity<ResponseFormat<CompetitionVm>> getVmById(@PathVariable UUID id) {
         return ResponseEntity.ok(responseFormat.format(
-                competitionService.getById(id),
+                competitionService.findById(id),
                 "Competition retrieved successfully"
         ));
     }
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<ResponseFormat<Competition>> update(@Valid @RequestBody CompetitionDto competitionDto, @PathVariable UUID id) {
+    public ResponseEntity<ResponseFormat<CompetitionVm>> update(@Valid @RequestBody CompetitionDto competitionDto, @PathVariable UUID id) {
         return ResponseEntity.ok(responseFormat.format(
                 competitionService.update(modelMapper.map(competitionDto, Competition.class), id),
                 "Competition updated successfully"

@@ -1,4 +1,4 @@
-package com.youcode.aftas.core.utils.pipe;
+package com.youcode.aftas.core.utils.pipe.mapper;
 
 public class Real{
 
@@ -19,5 +19,5 @@ public class Real{
     public Double toReal(Double value) {
         return value * 20;
     }
-
+    
 }

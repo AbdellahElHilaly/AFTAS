@@ -3,7 +3,7 @@ package com.youcode.aftas.core.controller;
 import com.youcode.aftas.core.dao.model.dto.HuntingDto;
 import com.youcode.aftas.core.dao.model.entity.Hunting;
 import com.youcode.aftas.core.service.app_service.HuntingService;
-import com.youcode.aftas.core.utils.pipe.ResponseFormat;
+import com.youcode.aftas.core.utils.pipe.mapper.ResponseFormat;
 import com.youcode.aftas.shared.Const.AppEndpoints;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

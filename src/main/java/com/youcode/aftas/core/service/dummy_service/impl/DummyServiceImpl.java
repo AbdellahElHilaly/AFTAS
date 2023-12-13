@@ -35,7 +35,7 @@ public class DummyServiceImpl implements DummyService {
         fishRepository.save(dummyFish.generate());
         huntingRepository.save(dummyHunting.generate());
         levelRepository.save(dummyLevel.generate());
-        rankingRepository.save(dummyRanking.generate());
+//        rankingRepository.save(dummyRanking.generate());
     }
 
     @Override
@@ -46,7 +46,7 @@ public class DummyServiceImpl implements DummyService {
         competitionRepository.saveAll(dummyCompetition.generateCollection(size));
         huntingRepository.saveAll(dummyHunting.generateCollection(size));
         levelRepository.saveAll(dummyLevel.generateCollection(size));
-        rankingRepository.saveAll(dummyRanking.generateCollection(size));
+//        rankingRepository.saveAll(dummyRanking.generateCollection(size));
     }
 
     @Override

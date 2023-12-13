@@ -1,6 +1,6 @@
 package com.youcode.aftas.core.controller.util;
 
-import com.youcode.aftas.core.utils.pipe.ResponseFormat;
+import com.youcode.aftas.core.utils.pipe.mapper.ResponseFormat;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

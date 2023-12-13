@@ -7,7 +7,6 @@ import lombok.Value;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalTime;
 
 /**
@@ -15,6 +14,7 @@ import java.time.LocalTime;
  */
 @Value
 public class CompetitionDto implements Serializable {
+
     @NotBlank(message = "Code is required")
     @Size(max = 255, message = "Code should not exceed 255 characters")
     String code;
@@ -25,11 +25,11 @@ public class CompetitionDto implements Serializable {
 
     @NotNull(message = "Start time is required")
     @FutureOrPresent(message = "Start time should be in the present or future")
-    Time startTime;
+    LocalTime startTime;
 
     @NotNull(message = "End time is required")
     @FutureOrPresent(message = "End time should be in the present or future")
-    Time endTime;
+    LocalTime endTime;
 
     @NotNull(message = "Number of participants is required")
     @Min(value = 1, message = "Number of participants should be at least 1")
@@ -42,4 +42,9 @@ public class CompetitionDto implements Serializable {
     @NotNull(message = "Amount is required")
     @Positive(message = "Amount should be positive")
     Double amount;
+
+    @AssertTrue(message = "End time should be greater than Start time")
+    public boolean isEndTimeAfterStartTime() {
+        return endTime.isAfter(startTime);
+    }
 }

@@ -1,5 +1,6 @@
 package com.youcode.aftas.core.service.app_service.impl;
 
+import com.youcode.aftas.core.dao.model.entity.RankId;
 import com.youcode.aftas.core.dao.model.entity.Ranking;
 import com.youcode.aftas.core.dao.repository.RankingRepository;
 import com.youcode.aftas.core.service.app_service.RankingService;
@@ -23,9 +24,9 @@ public class RankingServiceImpl implements RankingService {
     }
 
     @Override
-    public Ranking getById(UUID uuid) {
-        return RankingRepository.findById(uuid).orElseThrow(
-                () -> new NoSuchElementException("Ranking not found with id: " + uuid)
+    public Ranking getById(RankId rankId) {
+        return RankingRepository.findById(rankId).orElseThrow(
+                () -> new NoSuchElementException("Ranking not found with id: " + rankId)
         );
     }
 
@@ -35,14 +36,14 @@ public class RankingServiceImpl implements RankingService {
     }
 
     @Override
-    public Ranking update(Ranking Ranking, UUID uuid) {
-        Ranking.setId(getById(uuid).getId());
+    public Ranking update(Ranking Ranking, RankId rankId) {
+        Ranking.setId(getById(rankId).getId());
         return RankingRepository.save(Ranking);
     }
 
     @Override
-    public void deleteById(UUID uuid) {
-        RankingRepository.deleteById(uuid);
+    public void deleteById(RankId rankId) {
+        RankingRepository.deleteById(rankId);
     }
 
     @Override

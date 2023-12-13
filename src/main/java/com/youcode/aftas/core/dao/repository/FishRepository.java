@@ -9,4 +9,5 @@ import java.util.UUID;
 @Repository
 
 public interface FishRepository extends JpaRepository<Fish, UUID>, JpaSpecificationExecutor<Fish> {
+    public Fish findByName(String name);
 }

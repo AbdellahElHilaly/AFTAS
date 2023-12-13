@@ -3,7 +3,7 @@ package com.youcode.aftas.core.controller;
 import com.youcode.aftas.core.dao.model.dto.LevelDto;
 import com.youcode.aftas.core.dao.model.entity.Level;
 import com.youcode.aftas.core.service.app_service.LevelService;
-import com.youcode.aftas.core.utils.pipe.ResponseFormat;
+import com.youcode.aftas.core.utils.pipe.mapper.ResponseFormat;
 import com.youcode.aftas.shared.Const.AppEndpoints;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

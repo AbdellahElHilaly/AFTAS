@@ -23,8 +23,10 @@ public class Fish {
     private String name;
     private Double averageWeight;
 
-    @OneToMany
+    @OneToMany(mappedBy = "fish")
     @ToString.Exclude
     private List<Hunting> huntingList;
 
+    @ManyToOne
+    private Level level;
 }

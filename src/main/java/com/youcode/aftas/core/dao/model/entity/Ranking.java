@@ -14,20 +14,24 @@ import java.util.UUID;
 @Setter
 @Entity
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"member_id", "competition_id"})})
 public class Ranking {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @EmbeddedId
+    private RankId id;
 
     private Integer rank;
+
     private Integer score;
 
     @ManyToOne
+    @JoinColumn(name = "member_id")
+    @MapsId("memberId")
     private Member member;
 
     @ManyToOne
+    @JoinColumn(name = "competition_id")
+    @MapsId("competitionId")
     private Competition competition;
-
 
 }

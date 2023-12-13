@@ -22,4 +22,10 @@ public class Hunting {
 
     private Integer numberOfFish;
 
+    @ManyToOne
+    private Competition competition;
+
+    @ManyToOne
+    private Fish fish;
+
 }

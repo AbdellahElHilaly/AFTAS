@@ -1,4 +1,4 @@
-package com.youcode.aftas.core.utils.pipe;
+package com.youcode.aftas.core.utils.pipe.mapper;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.springframework.context.annotation.Scope;

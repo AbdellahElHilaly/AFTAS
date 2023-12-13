@@ -30,4 +30,6 @@ public class Member {
     private IdentityDocumentTypeEnum identityDocumentType;
     private String identityDocumentNumber;
 
+
+
 }

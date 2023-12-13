@@ -24,7 +24,7 @@ public class Level {
     private String description;
     private Integer points;
 
-    @OneToMany
+    @OneToMany(mappedBy = "level")
     @ToString.Exclude
     private List<Fish> fishList;
 
