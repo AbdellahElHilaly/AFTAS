@@ -45,6 +45,7 @@ public class DummyServiceImpl implements DummyService {
         competitionRepository.saveAll(dummyCompetition.generateCollection(size));
         huntingRepository.saveAll(dummyHunting.generateCollection(size));
         rankingRepository.saveAll(dummyRanking.generateCollection(size));
+
     }
 
     @Override

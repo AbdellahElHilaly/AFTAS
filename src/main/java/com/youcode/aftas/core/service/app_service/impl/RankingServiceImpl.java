@@ -1,5 +1,7 @@
 package com.youcode.aftas.core.service.app_service.impl;
 
+import com.youcode.aftas.core.database.model.entity.Competition;
+import com.youcode.aftas.core.database.model.entity.Member;
 import com.youcode.aftas.core.database.model.include.RankId;
 import com.youcode.aftas.core.database.model.entity.Ranking;
 import com.youcode.aftas.core.database.repository.RankingRepository;
@@ -48,5 +50,12 @@ public class RankingServiceImpl implements RankingService {
     @Override
     public void deleteAll() {
         RankingRepository.deleteAll();
+    }
+
+    @Override
+    public void findByCompetitionAndMemberOrThrow(Competition competition, Member member) {
+        RankingRepository.findByCompetitionAndMember(competition, member).orElseThrow(
+                () -> new NoSuchElementException("Ranking not found with competition: " + competition + " and member: " + member)
+        );
     }
 }

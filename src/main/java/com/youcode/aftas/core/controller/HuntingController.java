@@ -7,6 +7,7 @@ import com.youcode.aftas.core.utils.pipe.ResponseFormat;
 import com.youcode.aftas.shared.Const.AppEndpoints;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,8 @@ public class HuntingController {
                         "Hunting list retrieved successfully"
                 ));
     }
+
+
 
     @PostMapping
     public ResponseEntity<ResponseFormat<Hunting>> save(@Valid @RequestBody HuntingRequest HuntingRequest) {

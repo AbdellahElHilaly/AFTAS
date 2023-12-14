@@ -5,6 +5,7 @@ import com.youcode.aftas.core.database.model.entity.Fish;
 import com.youcode.aftas.core.database.model.entity.Hunting;
 import com.youcode.aftas.core.database.repository.CompetitionRepository;
 import com.youcode.aftas.core.database.repository.FishRepository;
+import com.youcode.aftas.core.database.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,7 @@ public class DummyHunting extends BaseFaker<Hunting> {
 
     private final FishRepository fishRepository;
     private final CompetitionRepository competitionRepository;
+    private final MemberRepository memberRepository;
 
     @Override
     public Hunting generate() {
@@ -28,6 +30,7 @@ public class DummyHunting extends BaseFaker<Hunting> {
                 .numberOfFish(faker.number().randomDigit())
                 .fish(fishList.get(faker.number().numberBetween(0, fishList.size())))
                 .competition(competitionList.get(faker.number().numberBetween(0, competitionList.size())))
+                .member(memberRepository.findAll().get(faker.number().numberBetween(0, memberRepository.findAll().size())))
                 .build();
     }
 }

@@ -1,5 +1,6 @@
 package com.youcode.aftas.core.database.model.dto.request;
 
+import com.youcode.aftas.core.database.model.entity.Hunting;
 import com.youcode.aftas.core.database.model.entity.Member;
 import com.youcode.aftas.shared.Enum.IdentityDocumentTypeEnum;
 import jakarta.validation.constraints.*;
@@ -7,6 +8,7 @@ import lombok.Value;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 /**
  * DTO for {@link Member}
@@ -35,4 +37,7 @@ public class MemberRequest implements Serializable {
     @NotBlank(message = "Identity document number is required")
     @Size(max = 255, message = "Identity document number should not exceed 255 characters")
     String identityDocumentNumber;
+
+
+    List<Hunting> huntingList;
 }

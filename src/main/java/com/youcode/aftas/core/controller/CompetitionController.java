@@ -93,14 +93,7 @@ public class CompetitionController {
         ));
     }
 
-    //add method 'add' for add hunting and ranking
-    @PutMapping("/add/{id}")
-    public ResponseEntity<ResponseFormat<CompetitionResponse>> add(@PathVariable UUID id, @RequestBody CompetitionRequest competitionRequest) {
-        return ResponseEntity.ok(responseFormat.format(
-                competitionService.addHunting(id, modelMapper.map(competitionRequest, Competition.class)),
-                "Competition add successfully"
-        ));
-    }
+
 
 
 

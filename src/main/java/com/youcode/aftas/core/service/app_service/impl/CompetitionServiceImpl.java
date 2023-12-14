@@ -25,8 +25,6 @@ import java.util.stream.Collectors;
 @Slf4j
 public class CompetitionServiceImpl implements CompetitionService {
     private final CompetitionRepository competitionRepository;
-    private final RankingService rankingService;
-    private final HuntingService huntingService;
     private final ModelMapper modelMapper;
 
 
@@ -92,24 +90,7 @@ public class CompetitionServiceImpl implements CompetitionService {
 
     }
 
-    @Override
-    public CompetitionResponse addHunting(UUID id, Competition competition) {
-        Competition source = findOrThrow(id);
 
-
-        List<Hunting> huntingListToAdd = competition.getHuntingList().stream()
-                .map(huntingRequest -> huntingService.getById(huntingRequest.getId()))
-                .collect(Collectors.toList());
-
-        List<Hunting> huntingListSource = source.getHuntingList();
-
-        huntingListSource.addAll(huntingListToAdd);
-
-        competition.setHuntingList(huntingListSource);
-
-
-        return modelMapper.map(competitionRepository.save(source), CompetitionResponse.class);
-    }
 
 }
 

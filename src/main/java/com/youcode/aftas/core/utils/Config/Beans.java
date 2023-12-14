@@ -1,8 +1,7 @@
 package com.youcode.aftas.core.utils.Config;
 
-import com.youcode.aftas.core.database.model.entity.Competition;
-import com.youcode.aftas.core.database.model.entity.Fish;
-import com.youcode.aftas.core.database.model.entity.Level;
+import com.youcode.aftas.core.database.model.dto.request.HuntingRequest;
+import com.youcode.aftas.core.database.model.entity.*;
 import com.youcode.aftas.core.database.model.dto.response.CompetitionResponse;
 import com.youcode.aftas.core.database.model.dto.response.FishResponse;
 import com.youcode.aftas.core.database.model.dto.response.LevelResponse;
@@ -10,6 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.UUID;
 
 @Configuration
 public class Beans {
@@ -34,6 +35,17 @@ public class Beans {
             //Fish to FishResponse
             modelMapper.typeMap(Fish.class, FishResponse.class)
                     .addMapping(Fish::getHuntingList, FishResponse::setHuntingList);
+
+            //member to memberResponse
+            modelMapper.typeMap(Fish.class, FishResponse.class)
+                    .addMapping(Fish::getHuntingList, FishResponse::setHuntingList);
+
+            // HuntingRequest to Hunting
+            modelMapper.createTypeMap(HuntingRequest.class, Hunting.class)
+                    .addMapping(HuntingRequest::getNumberOfFish, Hunting::setNumberOfFish)
+                    .addMapping(HuntingRequest::getFishId, (destination, value) -> destination.getFish().setId((UUID) value))
+                    .addMapping(HuntingRequest::getCompetitionId, (destination, value) -> destination.getCompetition().setId((UUID) value))
+                    .addMapping(HuntingRequest::getMemberId, (destination, value) -> destination.getMember().setId((UUID) value));
 
 
             return modelMapper;

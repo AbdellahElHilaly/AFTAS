@@ -1,6 +1,7 @@
 package com.youcode.aftas.core.controller;
 
 import com.youcode.aftas.core.database.model.dto.request.MemberRequest;
+import com.youcode.aftas.core.database.model.dto.response.MemberResponse;
 import com.youcode.aftas.core.database.model.entity.Member;
 import com.youcode.aftas.core.service.app_service.MemberService;
 import com.youcode.aftas.core.utils.pipe.ResponseFormat;
@@ -22,12 +23,12 @@ public class MemberController {
 
     private final MemberService memberService;
     private final ModelMapper modelMapper;
-    private final ResponseFormat<List<Member>> responseFormatList;
-    private final ResponseFormat<Member> responseFormat;
+    private final ResponseFormat<List<MemberResponse>> responseFormatList;
+    private final ResponseFormat<MemberResponse> responseFormat;
     private final ResponseFormat<Void> responseFormatVoid;
 
     @GetMapping
-    public ResponseEntity<ResponseFormat<List<Member>>> getAll() {
+    public ResponseEntity<ResponseFormat<List<MemberResponse>>> getAll() {
         return ResponseEntity.ok(
                 responseFormatList.format(
                         memberService.getAll(),
@@ -36,7 +37,7 @@ public class MemberController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseFormat<Member>> save(@Valid  @RequestBody MemberRequest memberRequest) {
+    public ResponseEntity<ResponseFormat<MemberResponse>> save(@Valid  @RequestBody MemberRequest memberRequest) {
         return ResponseEntity.ok(responseFormat.format(
                 memberService.save(modelMapper.map(memberRequest, Member.class)),
                 "Member saved successfully"
@@ -44,20 +45,21 @@ public class MemberController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseFormat<Member>> getById(@PathVariable UUID id) {
+    public ResponseEntity<ResponseFormat<MemberResponse>> getById(@PathVariable UUID id) {
         return ResponseEntity.ok(responseFormat.format(
-                memberService.getById(id),
+                memberService.findById(id),
                 "Member retrieved successfully"
         ));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ResponseFormat<Member>> update(@Valid  @RequestBody MemberRequest memberRequest, @PathVariable UUID id) {
+    public ResponseEntity<ResponseFormat<MemberResponse>> update(@Valid  @RequestBody MemberRequest memberRequest, @PathVariable UUID id) {
         return ResponseEntity.ok(responseFormat.format(
                 memberService.update(modelMapper.map(memberRequest, Member.class), id),
                 "Member updated successfully"
         ));
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ResponseFormat<Void>> deleteById(@PathVariable UUID id) {

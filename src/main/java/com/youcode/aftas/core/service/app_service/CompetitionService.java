@@ -9,5 +9,4 @@ public interface CompetitionService extends CrudVmService<Competition, Competiti
 
     CompetitionResponse clearHuntingAndRanking(UUID id);
 
-    CompetitionResponse addHunting(UUID id, Competition map);
 }
