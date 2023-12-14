@@ -1,7 +1,7 @@
 package com.youcode.aftas.core.service.app_service.impl;
 
-import com.youcode.aftas.core.dao.model.entity.Hunting;
-import com.youcode.aftas.core.dao.repository.HuntingRepository;
+import com.youcode.aftas.core.database.model.entity.Hunting;
+import com.youcode.aftas.core.database.repository.HuntingRepository;
 import com.youcode.aftas.core.service.app_service.HuntingService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

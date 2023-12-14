@@ -1,9 +1,9 @@
 package com.youcode.aftas.core.controller;
 
-import com.youcode.aftas.core.dao.model.dto.MemberDto;
-import com.youcode.aftas.core.dao.model.entity.Member;
+import com.youcode.aftas.core.database.model.dto.request.MemberRequest;
+import com.youcode.aftas.core.database.model.entity.Member;
 import com.youcode.aftas.core.service.app_service.MemberService;
-import com.youcode.aftas.core.utils.pipe.mapper.ResponseFormat;
+import com.youcode.aftas.core.utils.pipe.ResponseFormat;
 import com.youcode.aftas.shared.Const.AppEndpoints;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -36,9 +36,9 @@ public class MemberController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseFormat<Member>> save(@Valid  @RequestBody MemberDto memberDto) {
+    public ResponseEntity<ResponseFormat<Member>> save(@Valid  @RequestBody MemberRequest memberRequest) {
         return ResponseEntity.ok(responseFormat.format(
-                memberService.save(modelMapper.map(memberDto, Member.class)),
+                memberService.save(modelMapper.map(memberRequest, Member.class)),
                 "Member saved successfully"
         ));
     }
@@ -52,9 +52,9 @@ public class MemberController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ResponseFormat<Member>> update(@Valid  @RequestBody MemberDto memberDto, @PathVariable UUID id) {
+    public ResponseEntity<ResponseFormat<Member>> update(@Valid  @RequestBody MemberRequest memberRequest, @PathVariable UUID id) {
         return ResponseEntity.ok(responseFormat.format(
-                memberService.update(modelMapper.map(memberDto, Member.class), id),
+                memberService.update(modelMapper.map(memberRequest, Member.class), id),
                 "Member updated successfully"
         ));
     }

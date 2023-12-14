@@ -1,8 +1,8 @@
 package com.youcode.aftas.core.service.app_service.impl;
 
-import com.youcode.aftas.core.dao.model.entity.RankId;
-import com.youcode.aftas.core.dao.model.entity.Ranking;
-import com.youcode.aftas.core.dao.repository.RankingRepository;
+import com.youcode.aftas.core.database.model.include.RankId;
+import com.youcode.aftas.core.database.model.entity.Ranking;
+import com.youcode.aftas.core.database.repository.RankingRepository;
 import com.youcode.aftas.core.service.app_service.RankingService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.UUID;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))

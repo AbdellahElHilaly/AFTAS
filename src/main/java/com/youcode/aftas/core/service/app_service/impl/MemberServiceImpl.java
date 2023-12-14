@@ -1,7 +1,7 @@
 package com.youcode.aftas.core.service.app_service.impl;
 
-import com.youcode.aftas.core.dao.model.entity.Member;
-import com.youcode.aftas.core.dao.repository.MemberRepository;
+import com.youcode.aftas.core.database.model.entity.Member;
+import com.youcode.aftas.core.database.repository.MemberRepository;
 import com.youcode.aftas.core.service.app_service.MemberService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

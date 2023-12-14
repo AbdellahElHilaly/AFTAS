@@ -1,7 +1,7 @@
 package com.youcode.aftas.core.controller.util;
 
 import com.youcode.aftas.core.service.dummy_service.impl.SeederService;
-import com.youcode.aftas.core.utils.pipe.mapper.ResponseFormat;
+import com.youcode.aftas.core.utils.pipe.ResponseFormat;
 import com.youcode.aftas.shared.Const.AppEndpoints;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

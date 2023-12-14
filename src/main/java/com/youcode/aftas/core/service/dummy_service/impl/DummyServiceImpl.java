@@ -1,9 +1,7 @@
 package com.youcode.aftas.core.service.dummy_service.impl;
 
-import com.youcode.aftas.core.dao.model.entity.Hunting;
-import com.youcode.aftas.core.dao.model.entity.Ranking;
-import com.youcode.aftas.core.dao.model.fake.*;
-import com.youcode.aftas.core.dao.repository.*;
+import com.youcode.aftas.core.database.repository.*;
+import com.youcode.aftas.core.database.model.fake.*;
 import com.youcode.aftas.core.service.dummy_service.DummyService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,31 +30,31 @@ public class DummyServiceImpl implements DummyService {
     public void save() {
         memberRepository.save(dummyMember.generate());
         competitionRepository.save(dummyCompetition.generate());
+        levelRepository.save(dummyLevel.generate());
         fishRepository.save(dummyFish.generate());
         huntingRepository.save(dummyHunting.generate());
-        levelRepository.save(dummyLevel.generate());
-//        rankingRepository.save(dummyRanking.generate());
+        rankingRepository.save(dummyRanking.generate());
     }
 
     @Override
     public void saveCollection(int size) {
         clear();
-        memberRepository.saveAll(dummyMember.generateCollection(size));
-        fishRepository.saveAll(dummyFish.generateCollection(size));
+        memberRepository.saveAll(dummyMember.generateCollection(size*3));
+        levelRepository.saveAll(dummyLevel.generateCollection(size));
+        fishRepository.saveAll(dummyFish.generateCollection(size*3));
         competitionRepository.saveAll(dummyCompetition.generateCollection(size));
         huntingRepository.saveAll(dummyHunting.generateCollection(size));
-        levelRepository.saveAll(dummyLevel.generateCollection(size));
-//        rankingRepository.saveAll(dummyRanking.generateCollection(size));
+        rankingRepository.saveAll(dummyRanking.generateCollection(size));
     }
 
     @Override
     public void clear() {
+        rankingRepository.deleteAll();
         memberRepository.deleteAll();
+        huntingRepository.deleteAll();
         competitionRepository.deleteAll();
         fishRepository.deleteAll();
-        huntingRepository.deleteAll();
         levelRepository.deleteAll();
-        rankingRepository.deleteAll();
     }
 
 

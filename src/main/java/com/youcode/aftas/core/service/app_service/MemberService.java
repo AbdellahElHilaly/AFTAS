@@ -1,6 +1,6 @@
 package com.youcode.aftas.core.service.app_service;
 
-import com.youcode.aftas.core.dao.model.entity.Member;
+import com.youcode.aftas.core.database.model.entity.Member;
 
 import java.util.UUID;
 

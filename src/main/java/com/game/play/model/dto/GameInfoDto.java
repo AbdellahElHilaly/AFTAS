@@ -1,6 +1,6 @@
 package com.game.play.model.dto;
 
-import com.youcode.aftas.core.dao.model.entity.Competition;
+import com.youcode.aftas.core.database.model.entity.Competition;
 
 import java.util.List;
 

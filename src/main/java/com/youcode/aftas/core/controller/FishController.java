@@ -1,9 +1,10 @@
 package com.youcode.aftas.core.controller;
 
-import com.youcode.aftas.core.dao.model.dto.FishDto;
-import com.youcode.aftas.core.dao.model.entity.Fish;
+import com.youcode.aftas.core.database.model.dto.request.FishRequest;
+import com.youcode.aftas.core.database.model.entity.Fish;
+import com.youcode.aftas.core.database.model.dto.response.FishResponse;
 import com.youcode.aftas.core.service.app_service.FishService;
-import com.youcode.aftas.core.utils.pipe.mapper.ResponseFormat;
+import com.youcode.aftas.core.utils.pipe.ResponseFormat;
 import com.youcode.aftas.shared.Const.AppEndpoints;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -22,13 +23,13 @@ public class FishController {
 
     private final FishService FishService;
     private final ModelMapper modelMapper;
-    private final ResponseFormat<List<Fish>> responseFormatList;
-    private final ResponseFormat<Fish> responseFormat;
+    private final ResponseFormat<List<FishResponse>> responseFormatList;
+    private final ResponseFormat<FishResponse> responseFormat;
     private final ResponseFormat<Void> responseFormatVoid;
 
 
     @GetMapping
-    public ResponseEntity<ResponseFormat<List<Fish>>> getAll() {
+    public ResponseEntity<ResponseFormat<List<FishResponse>>> getAll() {
         return ResponseEntity.ok(
                 responseFormatList.format(
                         FishService.getAll(),
@@ -37,26 +38,26 @@ public class FishController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseFormat<Fish>> save(@Valid @RequestBody FishDto FishDto) {
+    public ResponseEntity<ResponseFormat<FishResponse>> save(@Valid @RequestBody FishRequest FishRequest) {
         return ResponseEntity.ok(responseFormat.format(
-                FishService.save(modelMapper.map(FishDto, Fish.class)),
+                FishService.save(modelMapper.map(FishRequest, Fish.class)),
                 "Fish saved successfully"
         ));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseFormat<Fish>> getById(@PathVariable UUID id) {
+    public ResponseEntity<ResponseFormat<FishResponse>> getById(@PathVariable UUID id) {
         return ResponseEntity.ok(responseFormat.format(
-                FishService.getById(id),
+                FishService.findById(id),
                 "Fish retrieved successfully"
         ));
     }
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<ResponseFormat<Fish>> update(@Valid @RequestBody FishDto FishDto, @PathVariable UUID id) {
+    public ResponseEntity<ResponseFormat<FishResponse>> update(@Valid @RequestBody FishRequest FishRequest, @PathVariable UUID id) {
         return ResponseEntity.ok(responseFormat.format(
-                FishService.update(modelMapper.map(FishDto, Fish.class), id),
+                FishService.update(modelMapper.map(FishRequest, Fish.class), id),
                 "Fish updated successfully"
         ));
     }

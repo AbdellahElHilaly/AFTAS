@@ -9,4 +9,5 @@ public interface CrudVmService <T, VM, ID> {
     public VM  update(T  t, ID id);
     public void deleteById(ID id);
     public void deleteAll();
+    public T findOrThrow(ID id);
 }

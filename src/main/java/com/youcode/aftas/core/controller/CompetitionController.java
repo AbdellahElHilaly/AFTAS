@@ -1,11 +1,11 @@
 package com.youcode.aftas.core.controller;
 
 
-import com.youcode.aftas.core.dao.model.dto.CompetitionDto;
-import com.youcode.aftas.core.dao.model.entity.Competition;
+import com.youcode.aftas.core.database.model.dto.request.CompetitionRequest;
+import com.youcode.aftas.core.database.model.entity.Competition;
+import com.youcode.aftas.core.database.model.dto.response.CompetitionResponse;
 import com.youcode.aftas.core.service.app_service.CompetitionService;
-import com.youcode.aftas.core.utils.pipe.mapper.ResponseFormat;
-import com.youcode.aftas.core.utils.pipe.vm.CompetitionVm;
+import com.youcode.aftas.core.utils.pipe.ResponseFormat;
 import com.youcode.aftas.shared.Const.AppEndpoints;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -24,13 +24,13 @@ public class CompetitionController {
 
     private final CompetitionService competitionService;
     private final ModelMapper modelMapper;
-    private final ResponseFormat<List<CompetitionVm>> responseFormatList;
-    private final ResponseFormat<CompetitionVm> responseFormat;
+    private final ResponseFormat<List<CompetitionResponse>> responseFormatList;
+    private final ResponseFormat<CompetitionResponse> responseFormat;
     private final ResponseFormat<Void> responseFormatVoid;
 
 
     @GetMapping
-    public ResponseEntity<ResponseFormat<List<CompetitionVm>>> getAll() {
+    public ResponseEntity<ResponseFormat<List<CompetitionResponse>>> getAll() {
         return ResponseEntity.ok(
                 responseFormatList.format(
                         competitionService.getAll(),
@@ -41,9 +41,9 @@ public class CompetitionController {
 
 
     @PostMapping
-    public ResponseEntity<ResponseFormat<CompetitionVm>> save(@Valid @RequestBody CompetitionDto competitionDto) {
+    public ResponseEntity<ResponseFormat<CompetitionResponse>> save(@Valid @RequestBody CompetitionRequest competitionRequest) {
         return ResponseEntity.ok(responseFormat.format(
-                competitionService.save(modelMapper.map(competitionDto, Competition.class)),
+                competitionService.save(modelMapper.map(competitionRequest, Competition.class)),
                 "Competition saved successfully"
         ));
     }
@@ -51,7 +51,7 @@ public class CompetitionController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseFormat<CompetitionVm>> getVmById(@PathVariable UUID id) {
+    public ResponseEntity<ResponseFormat<CompetitionResponse>> getVmById(@PathVariable UUID id) {
         return ResponseEntity.ok(responseFormat.format(
                 competitionService.findById(id),
                 "Competition retrieved successfully"
@@ -60,9 +60,9 @@ public class CompetitionController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<ResponseFormat<CompetitionVm>> update(@Valid @RequestBody CompetitionDto competitionDto, @PathVariable UUID id) {
+    public ResponseEntity<ResponseFormat<CompetitionResponse>> update(@Valid @RequestBody CompetitionRequest competitionRequest, @PathVariable UUID id) {
         return ResponseEntity.ok(responseFormat.format(
-                competitionService.update(modelMapper.map(competitionDto, Competition.class), id),
+                competitionService.update(modelMapper.map(competitionRequest, Competition.class), id),
                 "Competition updated successfully"
         ));
     }
@@ -82,5 +82,26 @@ public class CompetitionController {
                 "Competition deleted successfully"
         ));
     }
+
+
+    //add method 'restart' for remove all hunting and ranking
+    @PutMapping("/restart/{id}")
+    public ResponseEntity<ResponseFormat<CompetitionResponse>> restart(@PathVariable UUID id) {
+        return ResponseEntity.ok(responseFormat.format(
+                competitionService.clearHuntingAndRanking(id),
+                "Competition restarted successfully"
+        ));
+    }
+
+    //add method 'add' for add hunting and ranking
+    @PutMapping("/add/{id}")
+    public ResponseEntity<ResponseFormat<CompetitionResponse>> add(@PathVariable UUID id, @RequestBody CompetitionRequest competitionRequest) {
+        return ResponseEntity.ok(responseFormat.format(
+                competitionService.addHunting(id, modelMapper.map(competitionRequest, Competition.class)),
+                "Competition add successfully"
+        ));
+    }
+
+
 
 }

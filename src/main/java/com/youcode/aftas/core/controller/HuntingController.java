@@ -1,9 +1,9 @@
 package com.youcode.aftas.core.controller;
 
-import com.youcode.aftas.core.dao.model.dto.HuntingDto;
-import com.youcode.aftas.core.dao.model.entity.Hunting;
+import com.youcode.aftas.core.database.model.dto.request.HuntingRequest;
+import com.youcode.aftas.core.database.model.entity.Hunting;
 import com.youcode.aftas.core.service.app_service.HuntingService;
-import com.youcode.aftas.core.utils.pipe.mapper.ResponseFormat;
+import com.youcode.aftas.core.utils.pipe.ResponseFormat;
 import com.youcode.aftas.shared.Const.AppEndpoints;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -36,9 +36,9 @@ public class HuntingController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseFormat<Hunting>> save(@Valid @RequestBody HuntingDto HuntingDto) {
+    public ResponseEntity<ResponseFormat<Hunting>> save(@Valid @RequestBody HuntingRequest HuntingRequest) {
         return ResponseEntity.ok(responseFormat.format(
-                HuntingService.save(modelMapper.map(HuntingDto, Hunting.class)),
+                HuntingService.save(modelMapper.map(HuntingRequest, Hunting.class)),
                 "Hunting saved successfully"
         ));
     }
@@ -52,9 +52,9 @@ public class HuntingController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ResponseFormat<Hunting>> update(@Valid  @RequestBody HuntingDto HuntingDto, @PathVariable UUID id) {
+    public ResponseEntity<ResponseFormat<Hunting>> update(@Valid  @RequestBody HuntingRequest HuntingRequest, @PathVariable UUID id) {
         return ResponseEntity.ok(responseFormat.format(
-                HuntingService.update(modelMapper.map(HuntingDto, Hunting.class), id),
+                HuntingService.update(modelMapper.map(HuntingRequest, Hunting.class), id),
                 "Hunting updated successfully"
         ));
     }
