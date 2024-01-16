@@ -27,4 +27,14 @@ public class LogService {
     }
 
 
+    public LogEntry erorr(String directorySelected, LogService logService) {
+        return LogEntry.builder()
+                .timestamp(java.time.LocalDateTime.now())
+                .level(LogLevels.ERROR)
+                .message(directorySelected)
+                .className(logService.getClass().getName())
+                .methodName(Thread.currentThread().getStackTrace()[2].getMethodName())
+                .threadName(Thread.currentThread().getName())
+                .build();
+    }
 }

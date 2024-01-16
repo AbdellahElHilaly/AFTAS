@@ -26,6 +26,7 @@ public class DummyMember extends BaseFaker<Member> {
     public Member generate() {
         return Member.builder()
                 .id(UUID.randomUUID())
+
                 .familyName(faker.name().lastName())
                 .accessionDate(new Date(faker.date().birthday().getTime()))
                 .nationality(faker.country().name())

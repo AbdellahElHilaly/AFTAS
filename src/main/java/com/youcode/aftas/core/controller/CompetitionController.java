@@ -84,7 +84,6 @@ public class CompetitionController {
     }
 
 
-    //add method 'restart' for remove all hunting and ranking
     @PutMapping("/restart/{id}")
     public ResponseEntity<ResponseFormat<CompetitionResponse>> restart(@PathVariable UUID id) {
         return ResponseEntity.ok(responseFormat.format(
@@ -92,8 +91,6 @@ public class CompetitionController {
                 "Competition restarted successfully"
         ));
     }
-
-
 
 
 

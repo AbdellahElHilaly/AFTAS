@@ -18,7 +18,8 @@ public class Ranking {
 
     @EmbeddedId
     private RankId id;
-
+    
+    @Column(name = "column_rank")
     private Integer rank;
 
     private Integer score;

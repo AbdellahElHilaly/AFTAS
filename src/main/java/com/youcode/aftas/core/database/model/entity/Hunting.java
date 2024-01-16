@@ -1,6 +1,7 @@
 package com.youcode.aftas.core.database.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,7 +21,6 @@ public class Hunting {
     private UUID id;
 
     private Integer numberOfFish;
-
     @ManyToOne
     private Competition competition;
 

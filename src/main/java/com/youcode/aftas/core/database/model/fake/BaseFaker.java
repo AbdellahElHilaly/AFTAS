@@ -11,10 +11,13 @@ public abstract class BaseFaker<T> {
     public abstract T generate();
 
     public List<T> generateCollection(int size) {
+
         List<T> dummyList = new ArrayList<>(size);
+
         for (int i = 0; i < size; i++) {
             dummyList.add(generate());
         }
         return dummyList;
     }
+
 }

@@ -32,7 +32,6 @@ public class Competition {
     private String location;
     private Double amount;
 
-
     @OneToMany(mappedBy = "competition")
     @ToString.Exclude
     @JsonIgnore
@@ -42,7 +41,5 @@ public class Competition {
     @ToString.Exclude
     @JsonIgnore
     private List<Ranking> rankingList;
-
-
 
 }

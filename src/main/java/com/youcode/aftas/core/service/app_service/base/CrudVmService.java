@@ -1,4 +1,4 @@
-package com.youcode.aftas.core.service.app_service;
+package com.youcode.aftas.core.service.app_service.base;
 
 import java.util.List;
 

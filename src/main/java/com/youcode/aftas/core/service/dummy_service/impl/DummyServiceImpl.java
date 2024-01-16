@@ -50,9 +50,12 @@ public class DummyServiceImpl implements DummyService {
 
     @Override
     public void clear() {
+
         rankingRepository.deleteAll();
-        memberRepository.deleteAll();
         huntingRepository.deleteAll();
+
+
+        memberRepository.deleteAll();
         competitionRepository.deleteAll();
         fishRepository.deleteAll();
         levelRepository.deleteAll();

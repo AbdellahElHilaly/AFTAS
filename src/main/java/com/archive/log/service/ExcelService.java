@@ -39,8 +39,8 @@ public class ExcelService {
         LogService logService = new LogService();
 
         List<LogEntry> logEntries = List.of(
-               logService.info("Select directory",logService),
-                logService.info("Directory selected",logService),
+                logService.info("Select directory",logService),
+                logService.erorr("Directory selected",logService),
                 logService.info("Directory not selected successfully",logService)
         );
 

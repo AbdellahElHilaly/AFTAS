@@ -33,8 +33,6 @@ public class CompetitionRequest {
     @FutureOrPresent(message = "End time should be in the present or future")
     LocalTime endTime;
 
-    @NotNull(message = "Number of participants is required")
-    @Min(value = 1, message = "Number of participants should be at least 1")
     Integer numberOfParticipants;
 
     @NotBlank(message = "Location is required")
@@ -50,9 +48,10 @@ public class CompetitionRequest {
         return endTime.isAfter(startTime);
     }
 
-    List<Hunting> huntingList;
-
     List<Ranking> rankingList;
 
 
 }
+
+
+

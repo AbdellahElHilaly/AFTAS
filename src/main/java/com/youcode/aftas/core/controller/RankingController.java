@@ -37,6 +37,8 @@ public class RankingController {
                 ));
     }
 
+
+
     @PostMapping
     public ResponseEntity<ResponseFormat<Ranking>> save(@Valid @RequestBody RankingRequest RankingRequest) {
         return ResponseEntity.ok(responseFormat.format(

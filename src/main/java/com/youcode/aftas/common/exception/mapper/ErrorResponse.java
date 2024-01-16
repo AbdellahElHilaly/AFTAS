@@ -13,5 +13,8 @@ public class ErrorResponse {
     private  LocalDateTime timestamp;
     private  String message;
     private  String path;
+
+
     private  Map<String, List<String>> details;
+
 }

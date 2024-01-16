@@ -18,10 +18,20 @@ import java.util.NoSuchElementException;
 public class RankingServiceImpl implements RankingService {
 
     private final RankingRepository RankingRepository;
+    private final MemberServiceImpl memberService;
+    private final CompetitionServiceImpl competitionService;
 
     @Override
-    public Ranking save(Ranking Ranking) {
-        return RankingRepository.save(Ranking);
+    public Ranking save(Ranking ranking) {
+        ranking.setMember(memberService.findOrThrow(ranking.getMember().getId()));
+        ranking.setCompetition(competitionService.findOrThrow(ranking.getCompetition().getId()));
+
+        ranking.setId(RankId.builder()
+                .memberId(ranking.getMember().getId())
+                .competitionId(ranking.getCompetition().getId())
+                .build()
+        );
+        return RankingRepository.save(ranking);
     }
 
     @Override

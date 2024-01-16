@@ -5,27 +5,33 @@ import com.youcode.aftas.core.database.model.entity.Member;
 import com.youcode.aftas.core.database.model.entity.Ranking;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 /**
  * DTO for {@link Ranking}
  */
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class RankingRequest implements Serializable {
     @NotNull(message = "Rank is required")
     @PositiveOrZero(message = "Rank should be positive or zero")
     Integer rank;
 
-    @NotNull(message = "Rank is required")
+    @NotNull(message = "Score is required")
     @PositiveOrZero(message = "Rank should be positive or zero")
     Integer score;
 
-    @NotNull(message = "Rank is required")
-    Competition competition;
+    @NotNull(message = "Competition id is required")
+    UUID competitionId;
 
-    @NotNull(message = "Rank is required")
-    Member member;
+    @NotNull(message = "Member id is required")
+    UUID memberId;
 
 }
